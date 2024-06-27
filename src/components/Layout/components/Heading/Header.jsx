@@ -5,10 +5,13 @@ import styles from './Header.module.scss'
 const cx = classNames.bind(styles)
 // Fontawesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircleQuestion, faCircleXmark, faEarthAsia, faEllipsisVertical, faFlorinSign, faKeyboard, faMagnifyingGlass, faSign, faSignIn, faSpinner } from '@fortawesome/free-solid-svg-icons'
+import { faCircleQuestion, faCircleXmark, faCloudArrowUp, faCoins, faEarthAsia, faEllipsisVertical, faGear, faGears, faInbox, faKeyboard, faMagnifyingGlass, faPaperPlane, faSignOut, faSpinner, faUser } from '@fortawesome/free-solid-svg-icons'
 // Tippy
-import Tippy from '@tippyjs/react/headless'
-// import 'tippy.js/dist/tippy.css'
+import Tippy from '@tippyjs/react'
+import HeadlessTippy from '@tippyjs/react/headless'
+import 'tippy.js/dist/tippy.css'
+// img
+import icon_avatar from '@assets/icon-avatar.png'
 import logo from '@assets/tiktok-icon.png'
 // Comp
 import BoxPopper from '~/Popper/BoxPopper'
@@ -19,7 +22,22 @@ import Menu from '~/Popper/Menu/Menu'
 const MENU_ITEMS = [
     {
         icon : <FontAwesomeIcon icon={faEarthAsia}/>,
-        title : 'English'
+        title : 'English',
+        children: {
+            title: 'Language',
+            data : [
+                {
+                    type : 'Languge', 
+                    code : 'en',
+                    title : 'English'
+                },
+                {
+                    type : 'Languge', 
+                    code : 'vi',
+                    title : 'Tiếng Việt'
+                }
+            ]
+        }
     },
     {
         icon : <FontAwesomeIcon icon={faCircleQuestion}/>,
@@ -34,7 +52,7 @@ const MENU_ITEMS = [
 
 
 const Header = () => {
-
+    const currentUser = true
     const  [searchResult, setSearchResult] = useState([])
 
     useEffect(() => {
@@ -43,6 +61,41 @@ const Header = () => {
         }, 0);
     }, [])
 
+    const handleMenuChange = (menuItem) => {
+        // console.log(menuItem);
+        switch (menuItem.type) {
+            case 'Language': 
+
+                break;
+            default:
+        }
+    }
+    
+    const userMenu = [
+        {
+            icon : <FontAwesomeIcon icon={faUser}/>,
+            title : 'View profile',
+            to : '/@linh'
+        },
+        {
+            icon : <FontAwesomeIcon icon={faCoins}/>,
+            title : 'Get coins',
+            to : '/coin'
+        },
+        {
+            icon : <FontAwesomeIcon icon={faGear}/>,
+            title : 'Settings',
+            to : '/setting'
+        },
+        ...MENU_ITEMS,
+        {
+            icon : <FontAwesomeIcon icon={faSignOut}/>,
+            title : 'Log out',
+            to : '/logout',
+            separate: true
+        },
+    ]
+
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
@@ -50,7 +103,7 @@ const Header = () => {
                     <img src={logo} alt="" />
                     <p>Tóp Tóp</p>
                 </div>
-                <Tippy 
+                <HeadlessTippy 
                     interactive
                     visible={searchResult.length > 0}
                     render={attrs => (
@@ -74,28 +127,53 @@ const Header = () => {
                             <FontAwesomeIcon icon={faMagnifyingGlass}/>
                         </button>
                     </div>
-                </Tippy>
+                </HeadlessTippy>
+
                 <div className={cx('actions')}>
-                    <Button text >Upload</Button>
-                    <Button
-                        primary
-                        // rightIcon={<FontAwesomeIcon icon={faSignIn}/>}
-                        // rounded
-                        // disabled
-                        // outline
-                        // large
-                        // small
-                        // Note: small & large phải đi cùng với outline
-                    >
-                        Log In
-                    </Button>
-                    <Menu 
-                        items={MENU_ITEMS}
-                    >
+                {currentUser ? (
+                    <>
+                        <Tippy content='Upload Video' placement='bottom' delay={[0, 200]} >
+                            <button className={cx('action-btn')} >
+                                <FontAwesomeIcon icon={faCloudArrowUp} />
+                            </button>
+                        </Tippy>
+                        <Tippy content='Messages' placement='bottom' delay={[0, 200]}> 
+                            <button className={cx('action-btn')} >
+                                <FontAwesomeIcon icon={faPaperPlane} />
+                            </button>
+                        </Tippy>
+                        <Tippy content='Inbox' placement='bottom' delay={[0, 200]}> 
+                            <button className={cx('action-btn')} >
+                                <FontAwesomeIcon icon={faInbox} />
+                            </button>
+                        </Tippy>
+                    </>
+                ) : (
+                    <>
+                        <Button text >Upload</Button>
+                        <Button
+                            primary
+                            // rightIcon={<FontAwesomeIcon icon={faSignIn}/>}
+                            // rounded
+                            // disabled
+                            // outline
+                            // large
+                            // small
+                            // Note: small & large phải đi cùng với outline
+                        >
+                            Log In
+                        </Button>
+                    </>
+                )}
+                <Menu items={  currentUser ? userMenu : MENU_ITEMS } onChange={handleMenuChange}>
+                    {currentUser ? (
+                        <img className={cx('user-avatar')} src={icon_avatar} alt="Nguyen Van A" />
+                    ) : (
                         <button className={cx('more-btn')} >
                             <FontAwesomeIcon icon={faEllipsisVertical}  />
                         </button>
-                    </Menu>
+                    )}
+                </Menu> 
                 </div>
             </div>
         </header>
