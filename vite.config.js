@@ -9,7 +9,7 @@ export default defineConfig({
     react(),
     alias({
       entries: [
-        { find: '@src', replacement: path.resolve(__dirname, 'src') },
+        { find: '~src', replacement: path.resolve(__dirname, 'src') },
         { find: '~', replacement: path.resolve(__dirname, 'src/components') },
         { find: '@assets', replacement: path.resolve(__dirname, 'src/assets') },
         // Thêm các alias khác nếu cần

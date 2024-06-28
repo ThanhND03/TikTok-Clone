@@ -31,96 +31,8 @@
 }
 .logo p {
     margin-top: 5px;
-    font-size:2.5rem;
-    font-weight: 600;
-}
-
-.search-label {
-    font-size: 1.4rem;
-    font-weight: 600;
-    color: rgba(22, 24, 35, 0.5);
-    padding: 5px 12px;
-}
-
-.search,
-.search-result {
-    width: 370px;
-}
-.search {
-    height: var(--search-height);
-    background-color: rgba(22, 24, 35, 0.06);
-    border-radius: 92px;
-    padding-left: 16px;
-    display: flex;
-    position: relative;
-    border: 2px solid transparent;
-
-    input {
-        height: 100%;
-        font-size: 1.6rem;
-        color: var(--text-color);
-        border: none;
-        outline: none;
-        caret-color: red;
-        background-color: transparent;
-        flex: 1;
-    }
-
-    input:not(:placeholder-shown) ~ .search-btn {
-        color: rgba(22, 24, 35, 0.75);
-    }
-
-    ::placeholder {
-        font-size: 1.5rem;
-        color: #828282;
-    }
-
-    &::after {
-        content: '';
-        position: absolute;
-        top: var(--search-top-space);
-        right: 52px;
-        width: 1px;
-        height: calc(var(--search-height) - var(--search-top-space) * 2);
-        background-color: rgba(22, 24, 35, 0.12);
-    }
-
-    &:focus-within {
-        border-color: rgba(22, 24, 35, 0.2);
-    }
-}
-
-
-.clear, 
-.loading {
-    position: absolute;
-    right: calc(var(--search-btn-width) + 15px);
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 1.6rem;
-    color: rgba(22, 24, 35, 0.34);
-}
-.loading {
-    display: none;
-}
-
-.search-btn {
-    width: var(--search-btn-width);
-    height: 100%;
-    background-color: transparent;
-    border-end-end-radius: 92px;
-    border-start-end-radius: 92px;
-    font-size: 1.8rem;
-    color: #828282d1;
-
-    &:hover {
-        cursor: pointer;
-        background-color: rgba(22, 24, 35, 0.03);
-    }
-
-    // &:active {
-    //     background-color: rgba(22, 24, 35, 0.06);
-    // }
+    font-size:2.9rem;
+    font-weight: 700;
 }
 
 .actions {
@@ -142,7 +54,53 @@
     color: #161823;
     padding: 4px 12px;
     cursor: pointer;
+    position: relative;
+    
+    .number-mes {
+        position: absolute;
+        color: rgb(255, 255, 255);
+        font-family: TikTokFont, Arial, Tahoma, PingFangSC, sans-serif;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 18px;
+        background: rgb(254, 44, 85);
+        min-width: 20px;
+        height: 20px;
+        display: flex;
+        justify-content: center;
+        border-radius: 10px;
+        left: 23px;
+        top: -18%;
+        padding: 0px 6px;
+    }
 }
+
+
+.btn-uploads {
+    min-width:110px;
+    padding: 0 16px;
+    border: 1px solid rgba(22, 24, 35, 0.12);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background: transparent;
+    margin-right: 10px;
+
+    &:hover {
+        background: rgba(22, 24, 35, 0.03);
+    }
+
+    .icon-plus  {
+        font-size: 1.6rem;
+        padding: 2px 3px;
+        margin-right: 8px;
+    }
+
+}
+
+
 
 .user-avatar {
     width: 32px;

@@ -1,7 +1,5 @@
 /* Reset CSS */
 @import 'normalize.css';
-/* Google Font Roboto */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 // * {
 //     margin: 0;
@@ -33,7 +31,7 @@ html {
 
 body {
     background: var(--bg-color);
-    font-family: "Roboto", sans-serif;
+    font-family: "ProximaNova", sans-serif;
     font-size: 1.6rem;
     line-height: 1.5;
     text-rendering: optimizeSpeed;
@@ -47,6 +45,31 @@ button, input[tabindex]{
 a[href] {
     color: var(--text-color);
     text-decoration: none;
+}
+
+// Fonts 
+@font-face {
+    font-family: ProximaNova;
+    src: url('/src/assets/font/TikTokFont-Regular.woff2');
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: ProximaNova;
+    src: url('/src/assets/font/TikTokFont-Semibold.woff2');
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: ProximaNova;
+    src: url('/src/assets/font/TikTokDisplayFont-Bold.woff2');
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: SofiaPro;
+    src: url('/src/assets/font/TikTokFont-Bold.woff2');
+    font-weight: 700;
 }
 
 
