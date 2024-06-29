@@ -11,7 +11,7 @@ const cx = classNames.bind(styles)
 
 const defaultFn = () => {}
 
-const Menu = ({ children, items = [], onChange={defaultFn} }) => {
+const Menu = ({ children, items = [], hideOnClick = false ,onChange={defaultFn} }) => {
 
     const [history, setHistory] = useState([{data: items}])
     const current =  history[history.length - 1]
@@ -21,18 +21,20 @@ const Menu = ({ children, items = [], onChange={defaultFn} }) => {
             const isParent = !!item.children
 
             return <MenuItem key={index} data={item} onClick={() => {
-                if(isParent) {
-                    setHistory(prev => [...prev, item.children])
-                }else {
-                    onChange(item)
-                }
-            }} />
+                    if(isParent) {
+                        setHistory(prev => [...prev, item.children])
+                    }else {
+                        onChange(item)
+                    }
+                }} 
+            />
         })
     }
 
     return (
         <>
             <Tippy 
+            hideOnClick={hideOnClick}
             interactive
             delay={[0, 800]}
             offset={[20, 10]}
@@ -43,7 +45,7 @@ const Menu = ({ children, items = [], onChange={defaultFn} }) => {
                         { history.length > 1 && <Header title='Language' onBack={() => {
                             setHistory(prev => prev.slice(0, prev.length - 1))
                         }} />}
-                        {renderItems()}
+                        <div className={cx('menu-scroll')} >{renderItems()}</div>
                     </BoxPopper>
                 </div>
             )}

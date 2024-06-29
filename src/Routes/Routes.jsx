@@ -5,12 +5,14 @@ import Search from "../Pages/Search/Search"
 import Upload from "../Pages/Upload/Upload"
 import Profile from "../Pages/Profile/Profile"
 
+import routesConfig from '~src/config/routes'
+
 const publicRoutes = [
-    { path: '/', Component: Home },
-    { path: '/follow', Component: Following},
-    { path: '/:nickname', Component: Profile},
-    { path: '/upload', Component: Upload, layout: HeaderOnly},
-    { path: '/search', Component: Search, layout: null},
+    { path: routesConfig.home, Component: Home },
+    { path: routesConfig.following, Component: Following},
+    { path: routesConfig.profile, Component: Profile},
+    { path: routesConfig.upload, Component: Upload, layout: HeaderOnly},
+    { path: routesConfig.search, Component: Search, layout: null},
 ]
 
 const privateRoutes = [

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 // Scss
 import classNames from 'classnames/bind'
 import styles from './Header.module.scss'
@@ -20,7 +21,8 @@ import no_images from '@assets/no-images.png'
 import Button from '~/Button/Button'
 import Menu from '~/Popper/Menu/Menu'
 import Search from '../Search/Search'
-import { Link } from 'react-router-dom'
+
+import routesConfig from '~src/config/routes'
 
 const MENU_ITEMS = [
     {
@@ -38,7 +40,8 @@ const MENU_ITEMS = [
                     type : 'Languge', 
                     code : 'vi',
                     title : 'Tiếng Việt'
-                }
+                },
+                
             ]
         }
     },
@@ -100,7 +103,7 @@ const Header = () => {
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
-                <Link to={'/'} className={cx('logo')}>
+                <Link to={routesConfig.home} className={cx('logo')}>
                     <img src={logo} alt="" />
                     <p>Tóp Tóp</p>
                 </Link>
